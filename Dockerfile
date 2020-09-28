@@ -10,8 +10,10 @@ RUN cd /go/src/github.com/ohsu-comp-bio/funnel && make build
 FROM alpine
 WORKDIR /opt/funnel
 VOLUME /opt/funnel/funnel-work-dir
+VOLUME /opt/build
 EXPOSE 8000 9090
 ENV PATH="/app:${PATH}"
 COPY --from=build-env  /go/src/github.com/ohsu-comp-bio/funnel/funnel /app/
+COPY --from=build-env /go/src/github.com/ohsu-comp-bio/funnel/funnel /opt/build/
 
 ENTRYPOINT ["/app/funnel"]

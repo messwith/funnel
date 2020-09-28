@@ -42,7 +42,7 @@ func (dcmd DockerCommand) Run(ctx context.Context) error {
 		dcmd.Event.Error("failed to pull docker image", err)
 	}
 
-	args := []string{"run", "-i", "--read-only"}
+	args := []string{"run", "-i", "--read-only", "--privileged"}
 
 	if dcmd.RemoveContainer {
 		args = append(args, "--rm")
@@ -71,7 +71,7 @@ func (dcmd DockerCommand) Run(ctx context.Context) error {
 	args = append(args, dcmd.Command...)
 
 	// Roughly: `docker run --rm -i --read-only -w [workdir] -v [bindings] [imageName] [cmd]`
-	dcmd.Event.Info("Running command", "cmd", "docker "+strings.Join(args, " "))
+	dcmd.Event.Info("Running new privileged command", "cmd", "docker "+strings.Join(args, " "))
 	cmd := exec.Command("docker", args...)
 
 	if dcmd.Stdin != nil {
