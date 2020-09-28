@@ -14,3 +14,14 @@ Funnel is a toolkit for distributed, batch task execution, including a server, w
 Funnel is an implementation of the [GA4GH Task Execution Schemas](https://github.com/ga4gh/task-execution-schemas), an effort to standardize the APIs used for task execution across many platforms.
 
 Funnel provides an API server, multiple storage backends (local FS, S3, Google Bucket, etc.), multiple compute backends (local, HTCondor, Google Cloud, etc.), and a web dashboard.
+
+**Requirements**
+
+go 1.12+
+make
+
+**Build**
+
+```
+make
+```
